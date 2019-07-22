@@ -1,0 +1,110 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "player4",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.6833333333333333,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "paths": {
+      "107": {
+        "comps": {
+          "cc.Sprite": {
+            "spriteFrame": [
+              {
+                "frame": 0,
+                "value": {
+                  "__uuid__": "a1a94a10-864a-4f45-b455-df147f0fc595"
+                }
+              },
+              {
+                "frame": 0.16666666666666666,
+                "value": {
+                  "__uuid__": "144309c7-b535-45f3-a1b2-5bf847b5da7b"
+                }
+              },
+              {
+                "frame": 0.3333333333333333,
+                "value": {
+                  "__uuid__": "5488198a-1b07-4b79-b6ed-7f488e4c2d94"
+                }
+              },
+              {
+                "frame": 0.5833333333333334,
+                "value": {
+                  "__uuid__": "144309c7-b535-45f3-a1b2-5bf847b5da7b"
+                }
+              },
+              {
+                "frame": 0.6666666666666666,
+                "value": {
+                  "__uuid__": "a1a94a10-864a-4f45-b455-df147f0fc595"
+                }
+              }
+            ]
+          }
+        },
+        "props": {
+          "anchorX": [
+            {
+              "frame": 0,
+              "value": 1
+            }
+          ],
+          "position": [
+            {
+              "frame": 0,
+              "value": [
+                80,
+                0,
+                0
+              ]
+            }
+          ]
+        }
+      },
+      "116": {
+        "props": {
+          "active": [
+            {
+              "frame": 0,
+              "value": false
+            },
+            {
+              "frame": 0.3333333333333333,
+              "value": true
+            },
+            {
+              "frame": 0.5833333333333334,
+              "value": false
+            }
+          ],
+          "position": [
+            {
+              "frame": 0.3333333333333333,
+              "value": [
+                -110.769,
+                145.231,
+                0
+              ]
+            }
+          ]
+        }
+      }
+    }
+  },
+  "events": [
+    {
+      "frame": 0.3333333333333333,
+      "func": "hitBall",
+      "params": []
+    },
+    {
+      "frame": 0.6666666666666666,
+      "func": "hitEnd",
+      "params": []
+    }
+  ]
+}

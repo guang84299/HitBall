@@ -1,0 +1,100 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "player18",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.8333333333333334,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "paths": {
+      "477": {
+        "props": {
+          "position": [
+            {
+              "frame": 0,
+              "value": [
+                0,
+                45,
+                0
+              ]
+            },
+            {
+              "frame": 0.3333333333333333,
+              "value": [
+                0,
+                364.158,
+                0
+              ]
+            },
+            {
+              "frame": 0.6666666666666666,
+              "value": [
+                0,
+                45,
+                0
+              ]
+            },
+            {
+              "frame": 0.75,
+              "value": [
+                0,
+                55,
+                0
+              ]
+            },
+            {
+              "frame": 0.8333333333333334,
+              "value": [
+                0,
+                45,
+                0
+              ]
+            }
+          ],
+          "angle": [
+            {
+              "frame": 0.3333333333333333,
+              "value": -89.99999999999999
+            },
+            {
+              "frame": 0.6666666666666666,
+              "value": -360
+            }
+          ]
+        }
+      },
+      "481": {
+        "props": {
+          "active": [
+            {
+              "frame": 0,
+              "value": false
+            },
+            {
+              "frame": 0.25,
+              "value": true
+            },
+            {
+              "frame": 0.5,
+              "value": false
+            }
+          ]
+        }
+      }
+    }
+  },
+  "events": [
+    {
+      "frame": 0.3333333333333333,
+      "func": "hitBall",
+      "params": []
+    },
+    {
+      "frame": 0.8333333333333334,
+      "func": "hitEnd",
+      "params": []
+    }
+  ]
+}

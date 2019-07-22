@@ -1,0 +1,152 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "player1",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.6833333333333333,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "a8587c74-9a1a-4a18-b083-c33507ff00c5"
+            }
+          },
+          {
+            "frame": 0.16666666666666666,
+            "value": {
+              "__uuid__": "a97a36ed-a585-43c0-a62c-d1c9bff56891"
+            }
+          },
+          {
+            "frame": 0.3333333333333333,
+            "value": {
+              "__uuid__": "742b7c6d-0f1b-4861-9a63-4d308d9e2394"
+            }
+          },
+          {
+            "frame": 0.5,
+            "value": {
+              "__uuid__": "f027f1a4-92f8-49f8-adec-08b0fa61913c"
+            }
+          },
+          {
+            "frame": 0.6666666666666666,
+            "value": {
+              "__uuid__": "a8587c74-9a1a-4a18-b083-c33507ff00c5"
+            }
+          }
+        ]
+      }
+    },
+    "paths": {
+      "47": {
+        "props": {
+          "active": [
+            {
+              "frame": 0,
+              "value": true
+            },
+            {
+              "frame": 0.3333333333333333,
+              "value": false
+            },
+            {
+              "frame": 0.6666666666666666,
+              "value": true
+            }
+          ],
+          "position": [
+            {
+              "frame": 0,
+              "value": [
+                -20.164,
+                365.62,
+                0
+              ]
+            },
+            {
+              "frame": 0.16666666666666666,
+              "value": [
+                -11.81,
+                365.62,
+                0
+              ]
+            },
+            {
+              "frame": 0.6666666666666666,
+              "value": [
+                -15.742,
+                365.62,
+                0
+              ]
+            }
+          ]
+        }
+      },
+      "80": {
+        "props": {
+          "active": [
+            {
+              "frame": 0,
+              "value": false
+            },
+            {
+              "frame": 0.5,
+              "value": true
+            },
+            {
+              "frame": 0.6666666666666666,
+              "value": false
+            }
+          ]
+        }
+      },
+      "pos": {
+        "props": {
+          "position": [
+            {
+              "frame": 0,
+              "value": [
+                -135.064,
+                252,
+                0
+              ]
+            },
+            {
+              "frame": 0.3333333333333333,
+              "value": [
+                -135.064,
+                252.4,
+                0
+              ]
+            }
+          ],
+          "active": [
+            {
+              "frame": 0,
+              "value": false
+            }
+          ]
+        }
+      }
+    }
+  },
+  "events": [
+    {
+      "frame": 0.3333333333333333,
+      "func": "hitBall",
+      "params": []
+    },
+    {
+      "frame": 0.6666666666666666,
+      "func": "hitEnd",
+      "params": []
+    }
+  ]
+}

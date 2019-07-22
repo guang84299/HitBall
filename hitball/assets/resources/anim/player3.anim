@@ -1,0 +1,94 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "player3",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.6666666666666666,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "paths": {
+      "107": {
+        "comps": {
+          "cc.Sprite": {
+            "spriteFrame": [
+              {
+                "frame": 0,
+                "value": {
+                  "__uuid__": "838cde8e-d14a-4223-853f-a16b40a6005a"
+                }
+              },
+              {
+                "frame": 0.16666666666666666,
+                "value": {
+                  "__uuid__": "a8e5730f-9103-4b22-87e3-72c8525d6dea"
+                }
+              },
+              {
+                "frame": 0.5,
+                "value": {
+                  "__uuid__": "838cde8e-d14a-4223-853f-a16b40a6005a"
+                }
+              }
+            ]
+          }
+        },
+        "props": {
+          "position": [
+            {
+              "frame": 0.3333333333333333,
+              "value": [
+                -81.231,
+                110.769,
+                0
+              ]
+            },
+            {
+              "frame": 0.5,
+              "value": [
+                -81.231,
+                0,
+                0
+              ]
+            },
+            {
+              "frame": 0.6666666666666666,
+              "value": [
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "angle": [
+            {
+              "frame": 0.3333333333333333,
+              "value": 0
+            },
+            {
+              "frame": 0.4166666666666667,
+              "value": 15
+            },
+            {
+              "frame": 0.5,
+              "value": 0
+            }
+          ]
+        }
+      }
+    }
+  },
+  "events": [
+    {
+      "frame": 0.3333333333333333,
+      "func": "hitBall",
+      "params": []
+    },
+    {
+      "frame": 0.6666666666666666,
+      "func": "hitEnd",
+      "params": []
+    }
+  ]
+}
