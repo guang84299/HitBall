@@ -99,19 +99,16 @@ cc.Class({
 
     sel: function(id)
     {
-        if(storage.isHasPlayer(id))
+        if(!this.scroll)
         {
-            storage.setPlayer(id);
-            this.game.updatePlayer();
+            if(storage.isHasPlayer(id))
+            {
+                this.scroll = true;
+                storage.setPlayer(id);
+                this.game.updatePlayer();
 
-            this.hide();
-        }
-        else
-        {
-            storage.setPlayer(id);
-            this.game.updatePlayer();
-
-            this.hide();
+                this.hide();
+            }
         }
     },
 

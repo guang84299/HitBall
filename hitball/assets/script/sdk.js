@@ -270,8 +270,8 @@ module.exports = {
         if(cc.sys.os == cc.sys.OS_ANDROID || cc.sys.os == cc.sys.OS_IOS)
         {
             var query = "fromid="+cc.qianqista.openid+"&channel="+channel;
-            var title = "我一夜暴富的秘诀竟然是招聘了一群绵羊员工。。。";
-            var imageUrl = "https://game.7q7q.top/img/wxgame/c39395a760b9410482441ea6e92d72a0.jpg";//cc.url.raw("resources/zhuanfa.jpg");
+            var title = "我会唱，跳，rap，还会击球";
+            var imageUrl = "https://game.7q7q.top/img/wxgame/0c77cdf3c34b4c3389f5178f4254404d.jpg";//cc.url.raw("resources/zhuanfa.jpg");
             if(cc.GAME.shares.length>0)
             {
                 var i = Math.floor(Math.random()*cc.GAME.shares.length);
@@ -389,8 +389,8 @@ module.exports = {
                 return {
                     query:"channel=sharemenu",
                     withShareTicket: true,
-                    title: "我一夜暴富的秘诀竟然是招聘了一群绵羊员工。。。",
-                    imageUrl: "https://game.7q7q.top/img/wxgame/c39395a760b9410482441ea6e92d72a0.jpg"
+                    title: "我会唱，跳，rap，还会击球",
+                    imageUrl: "https://game.7q7q.top/img/wxgame/0c77cdf3c34b4c3389f5178f4254404d.jpg"
                 }
             });
 
@@ -436,7 +436,7 @@ module.exports = {
 
             var button = wx.createUserInfoButton({
                 type: 'text',
-                text: '授权进入游戏',
+                text: '请授权后打开',
                 style: {
                     left: pos.x-60,
                     top: pos.y+20,
@@ -461,8 +461,8 @@ module.exports = {
                     cc.sdk.userInfo = res.userInfo;
                     cc.qianqista.login(true,res.userInfo);
                     wx.postMessage({ message: "loginSuccess",userInfo:res.userInfo });
-                    //var score = storage.getLevel();
-                    //cc.sdk.uploadScore(score);
+                    var score = storage.getTotalScore();
+                    cc.sdk.uploadScore(score);
                     if(callback) callback(true);
                     //if(cc.sdk.main.quanxiansc)
                     //    cc.sdk.main.quanxiansc.hide();

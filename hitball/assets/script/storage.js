@@ -72,7 +72,7 @@ module.exports = {
         if(this.getSound() == 1)
         {
             var now = new Date().getTime();
-            if(now-this.playSoundTime>200)
+            if(now-this.playSoundTime>0)
             {
                 this.playSoundTime = now;
                 cc.loader.loadRes(sound, function (err, clip)
@@ -280,6 +280,14 @@ module.exports = {
         return JSON.parse(hasPlayer);
     },
 
+    uploadHasPlayer: function()
+    {
+        var datas = {};
+        datas.hasPlayer = this.getHasPlayer();
+        var data = JSON.stringify(datas);
+        cc.qianqista.uploaddatas(data);
+    },
+
 
     setLoginTime: function(time)
     {
@@ -373,6 +381,14 @@ module.exports = {
         var num = cc.sys.localStorage.getItem(this.pfix+"game_num");
         num = num ? num : 0;
         return Number(num);
+    },
+
+    uploadGameNum: function()
+    {
+        var datas = {};
+        datas.game_num = this.getGameNum();
+        var data = JSON.stringify(datas);
+        cc.qianqista.uploaddatas(data);
     },
 
 

@@ -3,10 +3,11 @@
  */
 
 module.exports = {
-    coinAniPools:null,
+    ballPools:null,
     //proadPools:[],
 
     audio_music:"audio/music",
+    audio_game:"audio/game",
     audio_button:"audio/button",
     audio_win:"audio/win",
     audio_baozha:"audio/baozha",
@@ -21,24 +22,34 @@ module.exports = {
         //    this.proadPools.push(pool);
         //}
 
-        this.coinAniPools = new cc.NodePool();
+        this.ballPools = new cc.NodePool();
 
     },
 
-    getCoinAni: function()
+    getBall: function()
     {
-        var coin = null;
-        if (this.coinAniPools.size() > 0) {
-            coin = this.coinAniPools.get();
+        var ball = null;
+        if (this.ballPools.size() > 0) {
+            ball = this.ballPools.get();
         } else {
-            coin = cc.instantiate(this["prefab_ui_coinAni"]);
+            ball = cc.instantiate(this["prefab_ball"]);
         }
-        return coin;
+        ball.opacity = 255;
+        return ball;
     },
 
-    putCoinAni: function(coin)
+    putBall: function(ball)
     {
-        this.coinAniPools.put(coin);
+        this.ballPools.put(ball);
+    },
+
+    initBallPool: function()
+    {
+        for(var i=0;i<5;i++)
+        {
+            var ball = cc.instantiate(this["prefab_ball"]);
+            this.ballPools.put(ball);
+        }
     },
 
     getToastCoin: function()
@@ -233,6 +244,30 @@ module.exports = {
             cc.removeSelf()
         ));
     },
+
+    showComboAni: function(parent,pos,comboNum)
+    {
+        if(!parent)parent = cc.find("Canvas");
+        if(!pos) pos = cc.v2(0,0);
+        if(!comboNum) comboNum = 0;
+
+        var combo = cc.instantiate(this["prefab_anim_combo"]);
+        combo.position = pos;
+        parent.addChild(combo,10000);
+
+        var label = combo.getComponent("cc.Label");
+        // label.fontSize = 30;
+        label.string = comboNum+" Combo";
+
+        combo.runAction(cc.sequence(
+            cc.spawn(
+                cc.moveBy(0.7,0,100).easing(cc.easeSineOut()),
+                cc.fadeOut(1),
+                ),
+            cc.removeSelf()
+        ));
+    },
+
 
     openUI: function(name,parent,showType)
     {

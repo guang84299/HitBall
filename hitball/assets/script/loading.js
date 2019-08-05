@@ -62,8 +62,13 @@ cc.Class({
             "prefab/ui/selplayer",
             "prefab/ui/getplayer",
             "prefab/ui/jiesuan",
+            "prefab/ui/qiandao",
+            "prefab/ui/rank",
+            "prefab/ui/power",
+            "prefab/ui/toast",
 
-            //"prefab/anim/coinani",
+            "prefab/anim/player36_boom",
+            "prefab/anim/combo",
 
             //"prefab/particle/suijinbi",
             //"scene/game1"
@@ -80,11 +85,9 @@ cc.Class({
         this.loadCount = 0;
 
         this.nowtime = new Date().getTime();
-        for(var i=0;i<5;i++)
-            this.loadres();
 
         var self = this;
-        qianqista.init("wx37d536c56e3e73f7","19d75155c485a20eefe6b18064a2ab53","全民剪羊毛",function(){
+        qianqista.init("wxd0a8e8cb0a26a473","94a0a8379c28022350e4027cd54a5096","奇怪的击球",function(){
             var score = storage.getTotalScore();
             sdk.uploadScore(score,self.initNet.bind(self));
         });
@@ -107,6 +110,10 @@ cc.Class({
             storage.setCoin(0);
             storage.addHasPlayer(1);
         }
+
+
+        for(var i=0;i<2;i++)
+            this.loadres();
     },
 
     loadres: function()
@@ -205,6 +212,10 @@ cc.Class({
         else
             res[pifx+resource.name] = resource;
 
+        if(url == "prefab/ball")
+        {
+            res.initBallPool();
+        }
         //cc.log(res);
     },
 

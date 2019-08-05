@@ -19,13 +19,18 @@ cc.Class({
         cc.ginvitelist = [];
         cc.myscene = "main";
 
-        //storage.playMusic(res.audio_music);
+        storage.playMusic(res.audio_music);
 
         this.initData();
 
         this.initUI();
         this.updateUI();
+        this.updateRed();
 
+        if(cc.gelPlayer)
+        {
+            res.openUI("getplayer");
+        }
     },
 
 
@@ -40,17 +45,17 @@ cc.Class({
     initUI: function()
     {
         this.node_main = cc.find("node_main",this.node);
-
+        this.display = cc.find("display",this.node);
         this.playerbg = cc.find("playerbg",this.node_main);
 
         this.label_coin = cc.find("coinbg/num",this.node_main).getComponent(cc.Label);
-        this.label_highScore = cc.find("highScore",this.node_main).getComponent(cc.Label);
-        this.label_totalScore = cc.find("totalScore",this.node_main).getComponent(cc.Label);
+        this.label_score = cc.find("scorebg/score",this.node_main).getComponent(cc.Label);
 
         var player = cc.instantiate(res["player_player"+this.playerId]);
         player.position = cc.v2(0,30);
         this.playerbg.addChild(player);
 
+        this.display.active = false;
         //if(sdk.is_iphonex())
         //{
         //    var topNode = cc.find("top",this.node_main);
@@ -73,8 +78,7 @@ cc.Class({
     updateUI: function()
     {
         this.label_coin.string = "x "+this.coin;
-        this.label_highScore.string = "最高分："+this.highScore;
-        this.label_totalScore.string = "总分："+this.totalScore;
+        this.label_score.string = "单局最高分/总分："+this.highScore+"/"+this.totalScore;
     },
 
     updatePlayer: function()
@@ -88,6 +92,8 @@ cc.Class({
             var player = cc.instantiate(res["player_player"+this.playerId]);
             player.position = cc.v2(0,30);
             this.playerbg.addChild(player);
+
+            storage.uploadPlayer();
         }
     },
 
@@ -96,6 +102,7 @@ cc.Class({
     {
         this.coin += coin;
         storage.setCoin(this.coin);
+        storage.uploadCoin();
         this.updateUI();
     },
 
@@ -144,6 +151,19 @@ cc.Class({
         }
 
         //this.share_btn.active = cc.GAME.share;
+    },
+
+    updateRed: function()
+    {
+        //签到
+        var showQiandao = false;
+        var loginDay = storage.getLoginDay();
+        var qiandaoNum = storage.getQianDaoNum();
+        if(loginDay>qiandaoNum && qiandaoNum<4 && loginDay != 4)
+            showQiandao = true;
+
+
+        cc.find("btns/qiandao/red",this.node_main).active = showQiandao;
     },
 
 

@@ -19,7 +19,7 @@ cc.Class({
         cc.ginvitelist = [];
         cc.myscene = "game";
 
-        //storage.playMusic(res.audio_music);
+        storage.playMusic(res.audio_game);
 
         this.initPhysics();
         this.initData();
@@ -41,11 +41,11 @@ cc.Class({
         //cc.PhysicsManager.DrawBits.e_jointBit |
         //cc.PhysicsManager.DrawBits.e_shapeBit;
         cc.director.getPhysicsManager().debugDrawFlags = 0;
-        //cc.PhysicsManager.FIXED_TIME_STEP = 1/30;
+        //cc.PhysicsManager.FIXED_TIME_STEP = 1/40;
         cc.PhysicsManager.VELOCITY_ITERATIONS = 1;
         cc.PhysicsManager.POSITION_ITERATIONS = 1;
         //cc.PhysicsManager.MAX_ACCUMULATOR = cc.PhysicsManager.FIXED_TIME_STEP*2;
-        cc.director.getPhysicsManager().enabledAccumulator = false;
+        cc.director.getPhysicsManager().enabledAccumulator = true;
         cc.director.getPhysicsManager().gravity = cc.v2(0,-640);
 
         //cc.director.getPhysicsManager()._debugDrawer.node.group = "game";
@@ -56,7 +56,6 @@ cc.Class({
         //manager.enabled = true;
         //manager.enabledDebugDraw = true;
         //manager.enabledDrawBoundingBox = true;
-
     },
 
 
@@ -117,7 +116,7 @@ cc.Class({
 
     startPostBall: function()
     {
-        this.schedule(this.postBall.bind(this),3,10);
+        this.schedule(this.postBall.bind(this),2,10);
     },
 
     postBall: function()
@@ -129,42 +128,49 @@ cc.Class({
         }
         this.ballNum -= 1;
 
-        this.ball = cc.instantiate(res.prefab_ball);
+        this.ball = res.getBall();
+        cc.res.setSpriteFrame("images/game/ball",this.ball);
         this.ball.parent = this.node_game;
 
         var pos = this.player.getChildByName("pos").position;
         pos = this.player.convertToWorldSpaceAR(pos).sub(cc.v2(cc.winSize.width/2,cc.winSize.height/2));
         this.tarpos = pos;
         this.ball.x = -cc.winSize.width/2;
-        this.ball.y = 0;
+        this.ball.y = pos.y+50;
         var body = this.ball.getComponent(cc.RigidBody);
 
         var disX = Math.abs(this.ball.x-pos.x);
         var disY = pos.y - this.ball.y;
 
-        var speed = (Math.random()-0.5) + 1;
+        var speed = Math.random()*0.6 + 1.1;
+        if(Math.random()>0.7) speed = 1.8;
 
         var x = disX*speed;
         var y = disY/(1/speed)+320*(1/speed);
 
         body.linearVelocity = cc.v2(x,y);
 
+        var ball = this.ball;
         this.ball.runAction(cc.sequence(
-            cc.delayTime(8),
+            cc.delayTime(5),
             cc.fadeOut(1),
-            cc.removeSelf()
+            cc.callFunc(function(){
+                res.putBall(ball);
+            })
         ));
 
         this.state = "start";
         this.updateUI();
+
+        //console.log(disX,pos);
     },
 
 
     updateUI: function()
     {
         this.label_ballnum.string = "x "+this.ballNum;
-        this.label_hitnum.string = "HIT:"+this.hitNum;
-        this.label_hrnum.string = "HR:"+this.hrNum;
+        this.label_hitnum.string = "好球:"+this.hitNum;
+        this.label_hrnum.string = "超级好球:"+this.hrNum;
     },
 
 
@@ -214,6 +220,11 @@ cc.Class({
             this.updateUI();
 
             storage.playSound(config.hitAudio.hit+type);
+
+            if(this.combo>=3)
+            {
+                res.showComboAni(this.node_game,cc.v2(-300,50),this.combo);
+            }
         }
         else if(type == 3)
         {
@@ -268,7 +279,7 @@ cc.Class({
 
     update: function(dt) {
         cc.director.getPhysicsManager().update(dt);
-
+        //cc.director.getCollisionManager().update(dt);
 
     }
 });

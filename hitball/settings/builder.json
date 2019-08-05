@@ -20,7 +20,7 @@
   "includeSDKBox": false,
   "inlineSpriteFrames": true,
   "inlineSpriteFrames_native": true,
-  "md5Cache": false,
+  "md5Cache": true,
   "mergeStartScene": false,
   "optimizeHotUpdate": false,
   "orientation": {
@@ -35,14 +35,14 @@
     "orientation": "portrait",
     "zip": false
   },
-  "startScene": "dd0b8e47-c27c-4a97-8e66-e51e0a5efef6",
+  "startScene": "ad2cb412-5214-48cb-bba0-d2c3ee917b55",
   "title": "hitball",
   "webOrientation": "auto",
   "wechatgame": {
-    "REMOTE_SERVER_ROOT": "",
-    "appid": "wx6ac3f5090a6b99c5",
-    "orientation": "portrait",
-    "subContext": ""
+    "REMOTE_SERVER_ROOT": "https://www.7q7q.top/subPackage/hitball003",
+    "appid": "wxd0a8e8cb0a26a473",
+    "orientation": "landscapeRight",
+    "subContext": "rank"
   },
   "xxteaKey": "47fa3ff1-966c-4e",
   "zipCompressJs": true

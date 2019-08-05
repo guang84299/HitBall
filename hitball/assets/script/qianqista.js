@@ -140,12 +140,11 @@ module.exports = {
                 if(self.isHide)
                 {
                     self.isHide = false;
-                    //if(cc.myscene == "game")
-                    //    cc.storage.playMusic(cc.res.audio_music);
-                    //else if(cc.myscene == "main")
-                    //    cc.storage.playMusic(cc.res.audio_bgm);
-                    if(cc.myscene == "main")
+                    if(cc.myscene == "game")
+                        cc.storage.playMusic(cc.res.audio_game);
+                    else if(cc.myscene == "main")
                         cc.storage.playMusic(cc.res.audio_music);
+
                 }
                 if(self.onshowmaincallback)
                     self.onshowmaincallback();
@@ -289,17 +288,17 @@ module.exports = {
                     this.logincallback();
             }
 
-            if(this.power == 1)
-            {
-                this.pdatas(function(pres){
-                    if(pres.state == 1)
-                    {
-                        self.paddUser(function(res){
-
-                        },cc.storage.getToalCoin()/cc.config.totalCoinRate);
-                    }
-                });
-            }
+            //if(this.power == 1)
+            //{
+            //    this.pdatas(function(pres){
+            //        if(pres.state == 1)
+            //        {
+            //            self.paddUser(function(res){
+            //
+            //            },cc.storage.getToalCoin()/cc.config.totalCoinRate);
+            //        }
+            //    });
+            //}
         }
     },
 
