@@ -137,6 +137,7 @@ module.exports = {
         cc.qianqista.uploaddatas(data);
     },
 
+
     setHighScore: function(score)
     {
         cc.sys.localStorage.setItem(this.pfix+"highScore",Math.floor(score));

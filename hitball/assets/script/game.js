@@ -265,6 +265,8 @@ cc.Class({
                 var animState = this.playerAni.play("player"+this.playerId);
                 //animState.speed = 2;
                 storage.playSound("audio/player"+this.playerId);
+
+                cc.sdk.vibrate();
             }
 
         }, this);

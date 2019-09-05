@@ -87,7 +87,7 @@ cc.Class({
         this.nowtime = new Date().getTime();
 
         var self = this;
-        qianqista.init("wxd0a8e8cb0a26a473","94a0a8379c28022350e4027cd54a5096","奇怪的击球",function(){
+        qianqista.init("wxce81c742b56a47cd","0c19245a811aaaf7b7fa1bfdaaf65f90","口袋高手",function(){
             var score = storage.getTotalScore();
             sdk.uploadScore(score,self.initNet.bind(self));
         });
@@ -290,6 +290,7 @@ cc.Class({
                 storage.setFirst(1);
             if(datas.hasOwnProperty("coin"))
                 storage.setCoin(Number(datas.coin));
+
 
             if(datas.hasOwnProperty("highScore"))
                 storage.setHighScore(Number(datas.highScore));

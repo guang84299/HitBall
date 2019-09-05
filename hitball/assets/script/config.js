@@ -25,6 +25,7 @@ module.exports = {
 
     ranges:[
         {hit1:30,hit2:80,hit3:180},//1
+        {hit1:30,hit2:80,hit3:180},//1
         {hit1:20,hit2:70,hit3:150},//2
         {hit1:10,hit2:50,hit3:100},//3
     ]
