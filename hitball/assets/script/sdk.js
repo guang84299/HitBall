@@ -125,7 +125,7 @@ module.exports = {
     videoLoad: function()
     {
         var self = this;
-        if(cc.sys.os == cc.sys.OS_ANDROID || cc.sys.os == cc.sys.OS_IOS)
+        if(cc.sys.os == cc.sys.OS_ANDROID && cc.sys.os == cc.sys.OS_IOS)
         {
             this.rewardedVideoAd = wx.createRewardedVideoAd({ adUnitId:'adunit-f6ce7bed6d31d3b1'});
             this.rewardedVideoAd.onLoad(function(){
@@ -178,7 +178,8 @@ module.exports = {
         else
         {
             if(callback)
-                callback(true);
+                callback(false);
+            cc.res.showToast("暂未开放！");
         }
     },
 
@@ -230,7 +231,7 @@ module.exports = {
 
     hideBanner: function()
     {
-        if(cc.sys.os == cc.sys.OS_ANDROID || cc.sys.os == cc.sys.OS_IOS)
+        if(cc.sys.os == cc.sys.OS_ANDROID && cc.sys.os == cc.sys.OS_IOS)
         {
             if(this.bannerAd)
                 this.bannerAd.destroy();
@@ -255,7 +256,7 @@ module.exports = {
 
     moveBanner: function()
     {
-        if(cc.sys.os == cc.sys.OS_ANDROID || cc.sys.os == cc.sys.OS_IOS)
+        if(cc.sys.os == cc.sys.OS_ANDROID && cc.sys.os == cc.sys.OS_IOS)
         {
             if(this.bannerAd && this.bannerAd.res)
             {

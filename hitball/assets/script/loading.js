@@ -87,7 +87,7 @@ cc.Class({
         this.nowtime = new Date().getTime();
 
         var self = this;
-        qianqista.init("wxce81c742b56a47cd","0c19245a811aaaf7b7fa1bfdaaf65f90","口袋高手",function(){
+        qianqista.init("1109746816","Yam4VXmbni1tG4Ja","口袋高手-QQ",function(){
             var score = storage.getTotalScore();
             sdk.uploadScore(score,self.initNet.bind(self));
         });
