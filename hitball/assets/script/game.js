@@ -280,7 +280,7 @@ cc.Class({
 
 
     update: function(dt) {
-        cc.director.getPhysicsManager().update(dt);
+        // cc.director.getPhysicsManager().update(dt);
         //cc.director.getCollisionManager().update(dt);
 
     }
