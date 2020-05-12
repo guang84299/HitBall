@@ -111,7 +111,7 @@ cc.Class({
         this.updateUI();
 
         this.node.active = true;
-
+        cc.sdk.showBanner(true);
         //storage.playSound(res.audio_win);
     },
 
@@ -130,6 +130,7 @@ cc.Class({
         }
         else if(data == "again")
         {
+            cc.sdk.hideBanner();
             this.again();
         }
         else if(data == "home")

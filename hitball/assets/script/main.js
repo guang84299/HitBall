@@ -31,6 +31,10 @@ cc.Class({
         {
             res.openUI("getplayer");
         }
+        else
+        {
+            cc.sdk.showBanner(true);
+        }
     },
 
 
@@ -172,6 +176,7 @@ cc.Class({
         var self = this;
         if(data == "start")
         {
+            cc.sdk.hideBanner();
             cc.director.loadScene("game");
         }
         else if(data == "setting")

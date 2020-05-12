@@ -87,12 +87,12 @@ cc.Class({
         this.nowtime = new Date().getTime();
 
         var self = this;
-        qianqista.init("1109746816","Yam4VXmbni1tG4Ja","口袋高手-QQ",function(){
+        qianqista.init("ttb3cdc5702ce859db","10ac24eda8d8f85bfbefdf679a0ff1bed5fec497","口袋高手-TT",function(){
             var score = storage.getTotalScore();
             sdk.uploadScore(score,self.initNet.bind(self));
         });
         sdk.getUserInfo();
-        //sdk.videoLoad();
+        sdk.videoLoad();
         sdk.closeRank();
         sdk.keepScreenOn();
 
@@ -110,7 +110,7 @@ cc.Class({
             storage.setCoin(0);
             storage.addHasPlayer(1);
         }
-
+        storage.setVideoPath("");
 
         for(var i=0;i<2;i++)
             this.loadres();

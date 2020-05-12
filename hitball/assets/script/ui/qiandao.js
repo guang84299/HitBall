@@ -89,7 +89,7 @@ cc.Class({
         //    this.btn_lingqu2.node.color = cc.color(180,180,180);
         //}
 
-        this.btn_lingqu2.node.active = cc.GAME.share;
+        this.btn_lingqu2.node.active = true;//cc.GAME.share;
     },
 
     lingqu: function(x2)
@@ -131,7 +131,7 @@ cc.Class({
                 cc.scaleTo(0.2,1.1).easing(cc.easeSineOut()),
                 cc.scaleTo(0.2,1).easing(cc.easeSineOut())
             ));
-        cc.sdk.showBanner();
+        cc.sdk.showBanner(true);
 
     },
 
@@ -147,7 +147,8 @@ cc.Class({
                     self.node.destroy();
                 })
             ));
-        cc.sdk.hideBanner();
+        // cc.sdk.hideBanner();
+        cc.sdk.showBanner(true);
     },
 
     click: function(event,data)
@@ -163,12 +164,12 @@ cc.Class({
         else if(data == "lingqu2")
         {
             var self = this;
-            cc.sdk.share(function(r){
+            cc.sdk.showVedio(function(r){
                 if(r)
                 {
                     self.lingqu(true);
                 }
-            },"qiandao");
+            });
 
         }
         storage.playSound(res.audio_button);

@@ -21,8 +21,38 @@ cc.Class({
    
         this.btn_close = cc.find("close",this.node);
         this.xiangzi = cc.find("xiangzi",this.node);
+        this.label_desc = cc.find("xiangzi/desc",this.node).getComponent(cc.Label);
+        this.icon_vedio = cc.find("xiangzi/icon/video",this.node);
+        this.icon_share = cc.find("xiangzi/icon/share",this.node);
+        this.icon = cc.find("xiangzi/icon",this.node);
 
         this.playerbg.active = false;
+
+        this.useShare = false;
+        this.useCoin = true;
+
+        if(this.game.coin<10)
+        {
+            this.useCoin = false;
+            var videoPath = storage.getVideoPath();
+            if(Math.random()>0.5 && videoPath) this.useShare = true;
+        }
+        else
+        {
+            if(Math.random()>0.5)
+            {
+                this.useCoin = false;
+                var videoPath = storage.getVideoPath();
+                if(Math.random()>0.5 && videoPath) this.useShare = true;
+            }
+        }
+
+        if(this.useCoin) this.icon.active = false;
+        else{
+            this.icon.active = true;
+            this.icon_vedio.active = !this.useShare;
+            this.icon_share.active = this.useShare;
+        }
     },
 
     updateUI: function()
@@ -32,92 +62,86 @@ cc.Class({
 
     openXiangzi: function()
     {
-        if(this.game.coin>=10)
-        {
-            this.game.addCoin(-10);
+        this.btn_close.active = false;
+        this.xiangzi.getComponent(cc.Button).interactable = false;
 
-            this.btn_close.active = false;
-            this.xiangzi.getComponent(cc.Button).interactable = false;
+        var balls = cc.find("balls",this.xiangzi).children;
+        var desc = cc.find("desc",this.xiangzi);
+        var ball = cc.find("ball",this.xiangzi);
+        var ball1 = cc.find("1",ball);
+        var ball2 = cc.find("2",ball);
+        var ball3 = cc.find("3",ball);
+        desc.active = false;
+        this.icon.active = false;
 
-            var balls = cc.find("balls",this.xiangzi).children;
-            var desc = cc.find("desc",this.xiangzi);
-            var ball = cc.find("ball",this.xiangzi);
-            var ball1 = cc.find("1",ball);
-            var ball2 = cc.find("2",ball);
-            var ball3 = cc.find("3",ball);
-            desc.active = false;
+        var self = this;
 
-            var self = this;
-
-            var openAni = function(){
-                ball.parent = self.node;
-                ball.position = self.xiangzi.position.add(ball.position);
-                ball.runAction(cc.sequence(
-                        cc.spawn(
-                            cc.moveTo(0.6,cc.v2(0,100)).easing(cc.easeSineIn()),
-                            cc.scaleTo(0.6,4),
-                            cc.rotateTo(0.6,140)
-                            ),
-                        cc.callFunc(function(){
-                            ball3.active = false;
-                            ball1.active = true;
-                            ball2.active = true;
-                            ball.angle = 0;
-                            ball1.runAction(cc.moveBy(0.6,cc.v2(0,400)).easing(cc.easeSineOut()));
-                            ball2.runAction(cc.sequence(
-                                    cc.moveBy(0.6,cc.v2(0,-400)).easing(cc.easeSineOut()),
-                                    cc.callFunc(function(){
-                                        self.randPlayer();
-                                    })
-                                ));
-                        })
-                    ));
-            };
-
-            var ballsAni = function(){
-                ball.active = true;
-                ball.opacity = 0;
-
-                for(var i=0;i<balls.length;i++)
-                {
-                    var r = Math.random();
-                    if(r>0.5) r = 1;
-                    else r = -1;
-                    var ac = cc.repeat(cc.sequence(
-                            cc.moveBy(0.1,6*r,6*r).easing(cc.easeSineIn()),
-                            cc.moveBy(0.1,-6*r,-6*r).easing(cc.easeSineIn())
-                        ),5);
-                    balls[i].runAction(ac);
-                }
-                self.xiangzi.runAction(cc.sequence(
-                        cc.repeat(cc.sequence(
-                            cc.moveBy(0.15,10,10).easing(cc.easeSineIn()),
-                            cc.moveBy(0.15,-10,-10).easing(cc.easeSineIn())
-                        ),4),
-                         cc.callFunc(function(){
-                             ball.opacity = 255;
-                             ball.runAction(cc.sequence(
-                                    cc.moveBy(0,0,30),
-                                    cc.moveBy(0.5,0,-30).easing(cc.easeSineOut()),
-                                    cc.callFunc(function(){
-                                        openAni();
-                                    })
-                                ));   
-                        })   
-                    ));
-            };
-            this.xiangzi.runAction(cc.sequence(
-                    cc.moveBy(0.2,0,30).easing(cc.easeSineIn()),
-                    cc.moveBy(0.2,0,-30).easing(cc.easeSineIn()),
+        var openAni = function(){
+            ball.parent = self.node;
+            ball.position = self.xiangzi.position.add(ball.position);
+            ball.runAction(cc.sequence(
+                    cc.spawn(
+                        cc.moveTo(0.6,cc.v2(0,100)).easing(cc.easeSineIn()),
+                        cc.scaleTo(0.6,4),
+                        cc.rotateTo(0.6,140)
+                        ),
                     cc.callFunc(function(){
-                        ballsAni();
+                        ball3.active = false;
+                        ball1.active = true;
+                        ball2.active = true;
+                        ball.angle = 0;
+                        ball1.runAction(cc.moveBy(0.6,cc.v2(0,400)).easing(cc.easeSineOut()));
+                        ball2.runAction(cc.sequence(
+                                cc.moveBy(0.6,cc.v2(0,-400)).easing(cc.easeSineOut()),
+                                cc.callFunc(function(){
+                                    self.randPlayer();
+                                })
+                            ));
                     })
                 ));
-        }
-        else
-        {
-            res.showToast("奖牌不足！");
-        }
+        };
+
+        var ballsAni = function(){
+            ball.active = true;
+            ball.opacity = 0;
+
+            for(var i=0;i<balls.length;i++)
+            {
+                var r = Math.random();
+                if(r>0.5) r = 1;
+                else r = -1;
+                var ac = cc.repeat(cc.sequence(
+                        cc.moveBy(0.1,6*r,6*r).easing(cc.easeSineIn()),
+                        cc.moveBy(0.1,-6*r,-6*r).easing(cc.easeSineIn())
+                    ),5);
+                balls[i].runAction(ac);
+            }
+            self.xiangzi.runAction(cc.sequence(
+                    cc.repeat(cc.sequence(
+                        cc.moveBy(0.15,10,10).easing(cc.easeSineIn()),
+                        cc.moveBy(0.15,-10,-10).easing(cc.easeSineIn())
+                    ),4),
+                        cc.callFunc(function(){
+                            ball.opacity = 255;
+                            ball.runAction(cc.sequence(
+                                cc.moveBy(0,0,30),
+                                cc.moveBy(0.5,0,-30).easing(cc.easeSineOut()),
+                                cc.callFunc(function(){
+                                    openAni();
+                                })
+                            ));   
+                    })   
+                ));
+        };
+        this.xiangzi.runAction(cc.sequence(
+                cc.moveBy(0.2,0,30).easing(cc.easeSineIn()),
+                cc.moveBy(0.2,0,-30).easing(cc.easeSineIn()),
+                cc.callFunc(function(){
+                    ballsAni();
+                })
+            ));
+
+       
     },
 
     randPlayer: function()
@@ -219,6 +243,8 @@ cc.Class({
         }
 
         //storage.playSound(res.audio_win);
+        // cc.sdk.hideBanner();
+        cc.sdk.showBanner(false,true);
     },
 
 
@@ -230,6 +256,7 @@ cc.Class({
             cc.gelPlayer = false;
             this.game.node_main.x = 0;
             this.node.destroy();
+            cc.sdk.showBanner(true);
         }
         else
         {
@@ -237,6 +264,7 @@ cc.Class({
                 cc.moveBy(0.5,-cc.winSize.width,0).easing(cc.easeSineIn()),
                 cc.callFunc(function(){
                     self.node.destroy();
+                    cc.sdk.showBanner(true);
                 })
             ));
             this.game.node_main.runAction(
@@ -254,7 +282,35 @@ cc.Class({
         }
         else if(data == "xiangzi")
         {
-            this.openXiangzi();
+            if(this.useCoin)
+            {
+                if(this.game.coin>=10)
+                {
+                    this.game.addCoin(-10);
+                    this.openXiangzi();
+                }
+                else
+                {
+                    res.showToast("奖牌不足！");
+                }
+            }
+            else
+            {
+                var self = this;
+                if(this.useShare)
+                {
+                    cc.sdk.share(function(r){
+                        if(r) self.openXiangzi();
+                    });
+                }
+                else
+                {
+                    cc.sdk.showVedio(function(r){
+                        if(r) self.openXiangzi();
+                    });
+                }
+            }
+           
         }
         else if(data == "sel")
         {

@@ -45,12 +45,6 @@
       "y": 1,
       "z": 1
     },
-    "_eulerAngles": {
-      "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
-      "z": 0
-    },
     "_is3DNode": true,
     "groupIndex": 0,
     "autoReleaseAssets": false,
@@ -168,7 +162,7 @@
       "__type__": "cc.Vec3",
       "x": 0,
       "y": 0,
-      "z": 0
+      "z": 250.56550627931955
     },
     "_scale": {
       "__type__": "cc.Vec3",
@@ -2289,7 +2283,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 244,
+      "width": 201,
       "height": 60
     },
     "_anchorPoint": {
@@ -2596,7 +2590,7 @@
       "__id__": 55
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_level": 4,
     "_components": [
       {
@@ -2790,8 +2784,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 61,
-      "height": 85
+      "width": 110,
+      "height": 77
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -2800,7 +2794,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 213.5,
+      "x": 146,
       "y": 0,
       "z": 0
     },
@@ -2971,7 +2965,7 @@
     "_enabled": true,
     "_layoutSize": {
       "__type__": "cc.Size",
-      "width": 244,
+      "width": 201,
       "height": 60
     },
     "_resize": 1,

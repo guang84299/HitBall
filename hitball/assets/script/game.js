@@ -100,6 +100,11 @@ cc.Class({
 
         this.initPlayer();
         this.startPostBall();
+
+        cc.sdk.gameRecorderStop(function(){
+            cc.sdk.gameRecorderStart();
+        });
+
     },
 
     againGame: function()
@@ -112,6 +117,11 @@ cc.Class({
 
         this.state = "stop";
         this.startPostBall();
+
+        cc.sdk.gameRecorderStop(function(){
+            cc.sdk.gameRecorderStart();
+        });
+
     },
 
     startPostBall: function()
@@ -123,7 +133,9 @@ cc.Class({
     {
         if(this.ballNum<=0)
         {
-            res.openUI("jiesuan");
+            cc.sdk.gameRecorderStop(function(){
+                res.openUI("jiesuan");
+            });
             return;
         }
         this.ballNum -= 1;

@@ -139,6 +139,7 @@ cc.Class({
             cc.moveBy(0.5,-cc.winSize.width,0).easing(cc.easeSineIn())
         );
         //storage.playSound(res.audio_win);
+        cc.sdk.hideBanner();
     },
 
 
@@ -149,6 +150,7 @@ cc.Class({
                 cc.moveBy(0.5,cc.winSize.width,0).easing(cc.easeSineIn()),
                 cc.callFunc(function(){
                     self.node.destroy();
+                    cc.sdk.showBanner();
                 })
             ));
         this.game.node_main.runAction(
